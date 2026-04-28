@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Consult — The Gambler</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap');
+:root { --black:#0a0a0a;--white:#f0ede6;--red:#cc1a1a;--gray:#2a2a2a;--paper:#e8e4da;--ink:#111111; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Courier Prime',monospace;font-size:15px;line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.6;}
+.page{max-width:860px;margin:0 auto;padding:0 1.5rem;}
+nav{border-bottom:3px solid var(--black);padding:0.75rem 0;display:flex;justify-content:space-between;align-items:center;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.05em;color:var(--black);text-decoration:none;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray);text-decoration:none;font-weight:700;}
+.nav-links a:hover,.nav-links a.active{color:var(--red);}
+header{border-bottom:6px solid var(--black);padding:2.5rem 0 2rem;text-align:center;}
+.page-kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--red);font-weight:700;margin-bottom:1rem;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,6.5rem);line-height:0.9;letter-spacing:0.02em;color:var(--black);margin-bottom:1rem;}
+.page-title em{color:var(--red);font-style:normal;}
+.page-sub{font-size:14px;font-style:italic;color:var(--gray);max-width:520px;margin:0 auto;line-height:1.7;}
+.headline-bar{background:var(--black);color:var(--white);padding:0.5rem 0;text-align:center;font-family:'Special Elite',serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;border-bottom:3px solid var(--black);}
+.cards-section{border-bottom:3px solid var(--black);}
+.cards-intro{padding:1.5rem 2rem;border-bottom:2px solid var(--black);text-align:center;font-size:13px;color:var(--gray);font-style:italic;}
+.cards-intro strong{color:var(--black);font-style:normal;}
+.three-cards{display:grid;grid-template-columns:repeat(3,1fr);}
+.card{border-right:3px solid var(--black);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:background 0.15s;}
+.card:last-child{border-right:none;}
+.card:hover{background:var(--white);}
+.card:hover .card-cta{background:var(--red);color:var(--white);border-color:var(--red);}
+.card-top{background:var(--black);padding:2rem 1.5rem 1.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;}
+.card:nth-child(2) .card-top{background:var(--red);}
+.card:nth-child(3) .card-top{background:#1a1a1a;}
+.card-number{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(255,255,255,0.06);position:absolute;top:0;right:0.5rem;line-height:1;}
+.card-img-placeholder{border:1px dashed rgba(255,255,255,0.15);width:100%;height:80px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;text-align:center;padding:0.5rem;}
+.card-label{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--white);line-height:1.1;letter-spacing:0.03em;}
+.card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem;}
+.card-desc{font-size:13px;line-height:1.7;color:var(--gray);}
+.card-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.tag{background:var(--black);color:var(--white);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;}
+.tag-outline{border:1px solid var(--black);color:var(--black);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;}
+.card-cta{margin-top:auto;border:2px solid var(--black);padding:0.75rem 1rem;text-align:center;font-family:'Courier Prime',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--black);transition:background 0.15s,color 0.15s,border-color 0.15s;}
+.section-label{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--red);opacity:0.4;}
+.not-sure{display:grid;grid-template-columns:1fr 1fr;border-bottom:3px solid var(--black);}
+.not-sure-text{padding:2rem;border-right:3px solid var(--black);}
+.not-sure-text h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;margin-bottom:1rem;}
+.not-sure-text p{font-size:13px;color:var(--gray);line-height:1.75;margin-bottom:1rem;}
+.not-sure-contact{padding:2rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;}
+.btn{font-family:'Courier Prime',monospace;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;display:inline-block;cursor:pointer;transition:transform 0.1s;border:2px solid;text-align:center;}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--red);color:var(--white);border-color:var(--red);}
+.btn-primary:hover{background:#aa1515;border-color:#aa1515;}
+.btn-secondary{background:transparent;color:var(--black);border-color:var(--black);}
+.btn-secondary:hover{background:var(--black);color:var(--white);}
+footer{border-top:6px solid var(--black);padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;flex-wrap:wrap;gap:0.5rem;}
+.footer-opsec{font-size:10px;color:var(--red);font-style:italic;text-transform:none;letter-spacing:0;}
+@media(max-width:640px){.three-cards{grid-template-columns:1fr;}.card{border-right:none;border-bottom:3px solid var(--black);}.not-sure{grid-template-columns:1fr;}.not-sure-text{border-right:none;border-bottom:3px solid var(--black);}nav{flex-direction:column;gap:0.5rem;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav>
+    <a href="index.html" class="nav-brand">The Gambler</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="consult.html" class="active">Book</a></li>
+      <li><a href="mailto:YOUR@EMAIL.COM">Email</a></li>
+    </ul>
+  </nav>
+  <header>
+    <div class="page-kicker">★ Free consultation · No pressure · Human on the other end ★</div>
+    <h1 class="page-title">WHO ARE<br>YOU <em>PEOPLE</em></h1>
+    <p class="page-sub">Different shows need different things. Pick what sounds most like you — it'll take you to the right form and the right portfolio examples.</p>
+  </header>
+  <div class="headline-bar">Select your situation below — each path has its own intake form and portfolio</div>
+  <section class="cards-section">
+    <div class="cards-intro"><strong>Not sure which one?</strong> Pick the vibe closest to yours. Nothing is locked in by choosing a category.</div>
+    <div class="three-cards">
+      <a href="professional.html" class="card">
+        <div class="card-top">
+          <div class="card-number">01</div>
+          <div class="card-img-placeholder">[ portfolio image — touring / headline show ]</div>
+          <div class="card-label">For established acts</div>
+          <div class="card-title">I AM A PROFESSIONAL ENTERTAINER LOOKING FOR HEIGHTENED IMPACT</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You have a rider, maybe a tour manager. You know what you want it to look like. You need someone who executes precisely and makes the rig do something people will talk about.</p>
+          <div class="card-tags">
+            <span class="tag">Touring acts</span>
+            <span class="tag">Headliners</span>
+            <span class="tag-outline">Rider-friendly</span>
+            <span class="tag-outline">Technical consult</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+      <a href="management.html" class="card">
+        <div class="card-top">
+          <div class="card-number">02</div>
+          <div class="card-img-placeholder">[ portfolio image — multi-artist / venue night ]</div>
+          <div class="card-label">For teams and promoters</div>
+          <div class="card-title">I AM A MANAGEMENT TEAM</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You're booking multiple artists or running a venue night. You need production that's reliable, consistent, and doesn't create problems. Show up, communicate, handle it.</p>
+          <div class="card-tags">
+            <span class="tag">Promoters</span>
+            <span class="tag">Venue ops</span>
+            <span class="tag-outline">Multi-show</span>
+            <span class="tag-outline">Recurring work</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+      <a href="meltfaces.html" class="card">
+        <div class="card-top">
+          <div class="card-number">03</div>
+          <div class="card-img-placeholder">[ portfolio image — DIY / underground / chaos ]</div>
+          <div class="card-label">DIY · underground · unhinged</div>
+          <div class="card-title">I WANNA MELT FACES</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You don't have a rider. You might not have a budget. You have a vision and an audience that wants to feel something. You want lights that match the energy, not a bar mitzvah.</p>
+          <div class="card-tags">
+            <span class="tag">DIY shows</span>
+            <span class="tag">Punk / noise</span>
+            <span class="tag-outline">Queer nights</span>
+            <span class="tag-outline">Low budget OK</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="not-sure">
+    <div class="not-sure-text">
+      <div class="section-label">Still not sure</div>
+      <h2>JUST EMAIL<br>ME</h2>
+      <p>Tell me about the show in plain language. I'll figure out what you need and go from there. No form required.</p>
+      <p style="font-size:12px;">I respond within 24 hours. If it's urgent, say so.</p>
+    </div>
+    <div class="not-sure-contact">
+      <a href="mailto:YOUR@EMAIL.COM" class="btn btn-primary">Send me an email</a>
+      <a href="index.html" class="btn btn-secondary">← Back to home</a>
+    </div>
+  </section>
+  <footer>
+    <span>© The Gambler</span>
+    <span class="footer-opsec">Encrypted. Independent. Accountable.</span>
+    <span>Built on Linux · No tracking</span>
+  </footer>
+</div>
+</body>
+</html>
+
+Sent with Proton Mail secure email.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Consult — The Gambler</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap');
+:root { --black:#0a0a0a;--white:#f0ede6;--red:#cc1a1a;--gray:#2a2a2a;--paper:#e8e4da;--ink:#111111; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Courier Prime',monospace;font-size:15px;line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.6;}
+.page{max-width:860px;margin:0 auto;padding:0 1.5rem;}
+nav{border-bottom:3px solid var(--black);padding:0.75rem 0;display:flex;justify-content:space-between;align-items:center;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.05em;color:var(--black);text-decoration:none;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray);text-decoration:none;font-weight:700;}
+.nav-links a:hover,.nav-links a.active{color:var(--red);}
+header{border-bottom:6px solid var(--black);padding:2.5rem 0 2rem;text-align:center;}
+.page-kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:var(--red);font-weight:700;margin-bottom:1rem;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,6.5rem);line-height:0.9;letter-spacing:0.02em;color:var(--black);margin-bottom:1rem;}
+.page-title em{color:var(--red);font-style:normal;}
+.page-sub{font-size:14px;font-style:italic;color:var(--gray);max-width:520px;margin:0 auto;line-height:1.7;}
+.headline-bar{background:var(--black);color:var(--white);padding:0.5rem 0;text-align:center;font-family:'Special Elite',serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;border-bottom:3px solid var(--black);}
+.cards-section{border-bottom:3px solid var(--black);}
+.cards-intro{padding:1.5rem 2rem;border-bottom:2px solid var(--black);text-align:center;font-size:13px;color:var(--gray);font-style:italic;}
+.cards-intro strong{color:var(--black);font-style:normal;}
+.three-cards{display:grid;grid-template-columns:repeat(3,1fr);}
+.card{border-right:3px solid var(--black);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:background 0.15s;}
+.card:last-child{border-right:none;}
+.card:hover{background:var(--white);}
+.card:hover .card-cta{background:var(--red);color:var(--white);border-color:var(--red);}
+.card-top{background:var(--black);padding:2rem 1.5rem 1.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;}
+.card:nth-child(2) .card-top{background:var(--red);}
+.card:nth-child(3) .card-top{background:#1a1a1a;}
+.card-number{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(255,255,255,0.06);position:absolute;top:0;right:0.5rem;line-height:1;}
+.card-img-placeholder{border:1px dashed rgba(255,255,255,0.15);width:100%;height:80px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;text-align:center;padding:0.5rem;}
+.card-label{font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--white);line-height:1.1;letter-spacing:0.03em;}
+.card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:1rem;}
+.card-desc{font-size:13px;line-height:1.7;color:var(--gray);}
+.card-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.tag{background:var(--black);color:var(--white);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;}
+.tag-outline{border:1px solid var(--black);color:var(--black);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.5rem;}
+.card-cta{margin-top:auto;border:2px solid var(--black);padding:0.75rem 1rem;text-align:center;font-family:'Courier Prime',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--black);transition:background 0.15s,color 0.15s,border-color 0.15s;}
+.section-label{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--red);opacity:0.4;}
+.not-sure{display:grid;grid-template-columns:1fr 1fr;border-bottom:3px solid var(--black);}
+.not-sure-text{padding:2rem;border-right:3px solid var(--black);}
+.not-sure-text h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;margin-bottom:1rem;}
+.not-sure-text p{font-size:13px;color:var(--gray);line-height:1.75;margin-bottom:1rem;}
+.not-sure-contact{padding:2rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;}
+.btn{font-family:'Courier Prime',monospace;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;display:inline-block;cursor:pointer;transition:transform 0.1s;border:2px solid;text-align:center;}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--red);color:var(--white);border-color:var(--red);}
+.btn-primary:hover{background:#aa1515;border-color:#aa1515;}
+.btn-secondary{background:transparent;color:var(--black);border-color:var(--black);}
+.btn-secondary:hover{background:var(--black);color:var(--white);}
+footer{border-top:6px solid var(--black);padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;flex-wrap:wrap;gap:0.5rem;}
+.footer-opsec{font-size:10px;color:var(--red);font-style:italic;text-transform:none;letter-spacing:0;}
+@media(max-width:640px){.three-cards{grid-template-columns:1fr;}.card{border-right:none;border-bottom:3px solid var(--black);}.not-sure{grid-template-columns:1fr;}.not-sure-text{border-right:none;border-bottom:3px solid var(--black);}nav{flex-direction:column;gap:0.5rem;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav>
+    <a href="index.html" class="nav-brand">The Gambler</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="consult.html" class="active">Book</a></li>
+      <li><a href="mailto:YOUR@EMAIL.COM">Email</a></li>
+    </ul>
+  </nav>
+  <header>
+    <div class="page-kicker">★ Free consultation · No pressure · Human on the other end ★</div>
+    <h1 class="page-title">WHO ARE<br>YOU <em>PEOPLE</em></h1>
+    <p class="page-sub">Different shows need different things. Pick what sounds most like you — it'll take you to the right form and the right portfolio examples.</p>
+  </header>
+  <div class="headline-bar">Select your situation below — each path has its own intake form and portfolio</div>
+  <section class="cards-section">
+    <div class="cards-intro"><strong>Not sure which one?</strong> Pick the vibe closest to yours. Nothing is locked in by choosing a category.</div>
+    <div class="three-cards">
+      <a href="professional.html" class="card">
+        <div class="card-top">
+          <div class="card-number">01</div>
+          <div class="card-img-placeholder">[ portfolio image — touring / headline show ]</div>
+          <div class="card-label">For established acts</div>
+          <div class="card-title">I AM A PROFESSIONAL ENTERTAINER LOOKING FOR HEIGHTENED IMPACT</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You have a rider, maybe a tour manager. You know what you want it to look like. You need someone who executes precisely and makes the rig do something people will talk about.</p>
+          <div class="card-tags">
+            <span class="tag">Touring acts</span>
+            <span class="tag">Headliners</span>
+            <span class="tag-outline">Rider-friendly</span>
+            <span class="tag-outline">Technical consult</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+      <a href="management.html" class="card">
+        <div class="card-top">
+          <div class="card-number">02</div>
+          <div class="card-img-placeholder">[ portfolio image — multi-artist / venue night ]</div>
+          <div class="card-label">For teams and promoters</div>
+          <div class="card-title">I AM A MANAGEMENT TEAM</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You're booking multiple artists or running a venue night. You need production that's reliable, consistent, and doesn't create problems. Show up, communicate, handle it.</p>
+          <div class="card-tags">
+            <span class="tag">Promoters</span>
+            <span class="tag">Venue ops</span>
+            <span class="tag-outline">Multi-show</span>
+            <span class="tag-outline">Recurring work</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+      <a href="meltfaces.html" class="card">
+        <div class="card-top">
+          <div class="card-number">03</div>
+          <div class="card-img-placeholder">[ portfolio image — DIY / underground / chaos ]</div>
+          <div class="card-label">DIY · underground · unhinged</div>
+          <div class="card-title">I WANNA MELT FACES</div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">You don't have a rider. You might not have a budget. You have a vision and an audience that wants to feel something. You want lights that match the energy, not a bar mitzvah.</p>
+          <div class="card-tags">
+            <span class="tag">DIY shows</span>
+            <span class="tag">Punk / noise</span>
+            <span class="tag-outline">Queer nights</span>
+            <span class="tag-outline">Low budget OK</span>
+          </div>
+          <div class="card-cta">View portfolio + book →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+  <section class="not-sure">
+    <div class="not-sure-text">
+      <div class="section-label">Still not sure</div>
+      <h2>JUST EMAIL<br>ME</h2>
+      <p>Tell me about the show in plain language. I'll figure out what you need and go from there. No form required.</p>
+      <p style="font-size:12px;">I respond within 24 hours. If it's urgent, say so.</p>
+    </div>
+    <div class="not-sure-contact">
+      <a href="mailto:YOUR@EMAIL.COM" class="btn btn-primary">Send me an email</a>
+      <a href="index.html" class="btn btn-secondary">← Back to home</a>
+    </div>
+  </section>
+  <footer>
+    <span>© The Gambler</span>
+    <span class="footer-opsec">Encrypted. Independent. Accountable.</span>
+    <span>Built on Linux · No tracking</span>
+  </footer>
+</div>
+</body>
+</html>
+
+Sent with Proton Mail secure email.
+
