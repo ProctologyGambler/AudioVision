@@ -104,12 +104,13 @@ footer { border-top: 6px solid var(--black); padding: 1.5rem 0; display: flex; j
     </div>
   </div>
 
-  <nav class="hand-nav">
-    <a href="index.html">Home</a>
-    <a href="road-log.html">Road Log</a>
-    <a href="team.html">Meet the Team</a>
-    <a href="posters.html">Past Shows</a>
-  </nav>
+<button class="nav-toggle" onclick="document.querySelector('.hand-nav').classList.toggle('is-open')">☰ Menu</button>
+<nav class="hand-nav">
+  <a href="index.html">Home</a>
+  <a href="road-log.html">Road Log</a>
+  <a href="team.html">Meet the Team</a>
+  <a href="posters.html">Past Shows</a>
+</nav>
 
   <section class="team-section photocopy">
     <div class="section-label">The Collective</div>
