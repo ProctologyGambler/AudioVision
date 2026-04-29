@@ -96,7 +96,6 @@ a { color: inherit; text-decoration: none; }
   transform: rotate(-3deg);
   margin-left: 0.5rem;
   position: relative;
-  /* imperfect ink — double shadow offset simulates a pressed stamp */
   text-shadow: 1px 1px 0 rgba(204,26,26,0.3);
   box-shadow: 2px 2px 0 rgba(204,26,26,0.15), inset 0 0 8px rgba(204,26,26,0.08);
 }
@@ -380,8 +379,8 @@ header { border-bottom: 6px solid var(--black); padding: 1.5rem 0 1rem; position
 .col-headline { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.03em; line-height: 1; margin-bottom: 1rem; color: var(--black); }
 
 /* Scale section */
-.scale-section { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid var(--black); }
-.scale-text { padding: 2rem; border-right: 3px solid var(--black); }
+.scale-section { display: grid; grid-template-columns: 1fr; border-bottom: 3px solid var(--black); }
+.scale-text { padding: 2rem; }
 .scale-visual { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
 .scale-slider {
   -webkit-appearance: none;
@@ -502,7 +501,7 @@ header { border-bottom: 6px solid var(--black); padding: 1.5rem 0 1rem; position
   border-bottom: 6px solid var(--red);
 }
 .cta-section::before {
-  content: 'ACT NOW';
+  content: 'AudioVision';
   position: absolute;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 15rem;
@@ -555,57 +554,6 @@ footer {
 </head>
 <body>
 
-<!--
-  ╔══════════════════════════════════════════════════════════════╗
-  ║  AUDIOVISION — DEV NOTES                                    ║
-  ╠══════════════════════════════════════════════════════════════╣
-  ║  Search for "DEV-" to find all note blocks.                ║
-  ║                                                              ║
-  ║  Tags: [TODO] [BLOCKED] [QUESTION] [CONTENT] [DONE] [NOTE] ║
-  ╚══════════════════════════════════════════════════════════════╝
--->
-
-<!-- DEV-001
-  [CONTENT] Replace all placeholder emails
-  Location: Search for "YOUR@EMAIL.COM" in this file (2 occurrences)
-  Example:  mailto:book@audiovision.co
--->
-
-<!-- DEV-002
-  [TODO] Wire consultation cards to booking flow
-  Context: Three .card elements have onclick="event.preventDefault();" which stops
-           navigation. Replace with actual Calendly or Google Forms links.
-  Location: Search for 'onclick="event.preventDefault();"' (3 occurrences)
-  Example:  href="https://calendly.com/audiovision/collaborative-flow"
--->
-
-<!-- DEV-003
-  [QUESTION] Instagram link — profile or DM?
-  Location: CTA section, btn-ghost element
-  Example:  href="https://instagram.com/audiovision"
-           href="https://instagram.com/direct/messages/new/?username=audiovision"
--->
-
-<!-- DEV-004
-  [NOTE] Ticker speed set to 10s. Adjust in CSS "animation: ticker" if needed.
-  Example:  10s = fast, 18s = moderate, 25s = slow
--->
-
-<!-- DEV-005
-  [NOTE] AESTHETIC LAYER ADDED this round:
-  - New CSS classes: .stamp-alt, .stamp-faded, .tape, .tape-right, .tape-left,
-    .stapled, .red-pen, .margin-note, .corrected, .photocopy, .photocopy-tilt, .clipped
-  - Applied tape to: xerox-box "The rig", booking header
-  - Applied staple to: xerox-box "Who we work with"
-  - Applied margin-note to: "we cannot do everything" note on what-we-cant-do box
-  - Applied corrected to: strikethrough on "polished" in first card desc
-  - Applied photocopy to: values section (slight tilt + edge vignette)
-  - Applied photocopy-tilt to: FAQ section (opposite tilt)
-  - Applied clipped to: "how it works" steps box
-  - Added "What we can't do" xerox-box in services section
-  - All purely CSS-driven, zero JS changes
--->
-
 <div class="page">
 
   <!-- MASTHEAD -->
@@ -617,6 +565,8 @@ footer {
     </div>
   </header>
 
+
+
   <!-- TICKER -->
   <div class="ticker-wrap">
     <div class="ticker">
@@ -625,13 +575,13 @@ footer {
       <span>VIDEO</span><span class="sep">✦</span>
       <span>PROJECTION MAPPING</span><span class="sep">✦</span>
       <span>PHOTOGRAPHY</span><span class="sep">✦</span>
-      <span>VIDEO EDITS</span><span class="sep">✦</span>
+      <span>EDITS</span><span class="sep">✦</span>
       <span>SOUND</span><span class="sep">✦</span>
       <span>LIGHTS</span><span class="sep">✦</span>
       <span>VIDEO</span><span class="sep">✦</span>
       <span>PROJECTION MAPPING</span><span class="sep">✦</span>
       <span>PHOTOGRAPHY</span><span class="sep">✦</span>
-      <span>VIDEO EDITS</span><span class="sep">✦</span>
+      <span>EDITS</span><span class="sep">✦</span>
     </div>
   </div>
 
@@ -649,11 +599,10 @@ footer {
   <section class="single-col">
     <div class="section-label">What we bring</div>
     <div class="col-headline">FULL-STACK<br>PRODUCTION</div>
-    <div class="xerox-box tape" data-label="The rig">
       <ul>
-        <li>Sound — FOH & monitor mixes that feel good</li>
+        <li>Sound — FOH & monitor mixes</li>
         <li>Lights — intelligent fixtures, LEDs, haze, programmed looks and dynamic energy</li>
-        <li>Video — multi-cam, IMAG, live switching, playback</li>
+        <li>Video — multi-cam, IMAG, live switching, playback, streaming</li>
         <li>Projection mapping — merging live video and digitally generated effects</li>
         <li>Photography — concert, event, documentary coverage</li>
         <li>Transport & logistics — we move it, we load it, you don't worry</li>
@@ -680,34 +629,28 @@ footer {
   <section class="cards-section">
     <div class="cards-intro"><strong>Not sure which one?</strong> Pick the closest vibe.</div>
     <div class="three-cards">
-      <!-- DEV-002: Wire to collaborative flow intake -->
       <a href="#" class="card" onclick="event.preventDefault();">
         <div class="card-label">Collaborative Flow</div>
         <div class="card-title">AudioVision</div>
-        <p class="card-desc">You want to go hard and you're open to ideas. You might have a rough idea — or no idea at all. We riff. We collab. We pursue. No <span class="corrected">polished</span> pitch deck needed.</p>
+        <p class="card-desc">You have a performance and want it to pack a punch. You might have a rough idea — or no idea at all. We riff. We collab. We pursue. No <span class="corrected">polished</span> pitch deck needed.</p>
         <div class="card-tags">
-          <span class="tag">Experimental</span>
-          <span class="tag">DJs</span>
-          <span class="tag tag-outline">No plan needed</span>
+          <span class="tag tag-outline">You have a gig</span>
         </div>
         <div class="card-cta">Schedule free consult →</div>
       </a>
-      <!-- DEV-002: Wire to specific vision intake -->
       <a href="#" class="card" onclick="event.preventDefault();">
         <div class="card-label">Artist with a specific vision</div>
         <div class="card-title">I KNOW WHAT I WANT</div>
         <p class="card-desc">You've got an established vision of your brand and maybe some released content. We walk through your vision and tell you honestly what is within our wheelhouse in support of your vibe.</p>
         <div class="card-tags">
+          <span class="tag">Headliners and or support</span>
           <span class="tag">Touring acts</span>
-          <span class="tag">Headliners</span>
-          <span class="tag tag-outline">Rider-friendly</span>
         </div>
         <div class="card-cta">Schedule free consult →</div>
       </a>
-      <!-- DEV-002: Wire to promoter intake -->
       <a href="#" class="card" onclick="event.preventDefault();">
         <div class="card-label">Promoters & organizers</div>
-        <div class="card-title">I NEED A<br>PRODUCTION PARTNER</div>
+        <div class="card-title">I NEED<br>A PRODUCTION PARTNER</div>
         <p class="card-desc">You're booking rooms, managing budgets, dealing with vendors. You need someone who shows up, knows their shit, and doesn't add to your stress.</p>
         <div class="card-tags">
           <span class="tag">Promoters</span>
@@ -736,7 +679,7 @@ footer {
       <div style="padding:1.5rem; position:relative;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:4rem; color:var(--black); line-height:1; opacity:0.08; position:absolute; top:0.5rem; right:0.75rem;">03</div>
         <div style="font-family:'Special Elite',serif; font-size:1rem; margin-bottom:0.5rem; color:var(--red);">Your show rules</div>
-        <div style="font-size:13px; line-height:1.6;">We show up. We do the work. We make your show look the way it deserves. You pay after the show.</div>
+        <div style="font-size:13px; line-height:1.6;">We show up. We do the work. We make your show look and feel more cohesive and aligned with your vision. You pay after the show.</div>
       </div>
     </div>
   </section>
@@ -746,25 +689,11 @@ footer {
   <section class="scale-section">
     <div class="scale-text">
       <div class="section-label">Pricing</div>
-      <div class="col-headline">SLIDING<br>SCALE</span></div>
+      <div class="col-headline">SLIDING<br>SCALE</div>
       <div class="red-pen" style="margin-bottom:1rem;">// we mean it</div>
-      <p style="font-size:14px; line-height:1.7; margin-bottom:1rem;">We don't have a rate card. We have a conversation. Tell us your budget and we'll tell you what we can do with it.</p>
-      <p style="font-size:14px; line-height:1.7; margin-bottom:1rem;">If you've got a festival budget, we'll build you a festival show. If you're a local artist with a vision we'll stretch to optimize our resources at minimal cost.</p>
+      <p style="font-size:14px; line-height:1.7; margin-bottom:1rem;">Tell us your budget and we'll tell you what we can do with it.</p>
+      <p style="font-size:14px; line-height:1.7; margin-bottom:1rem;">If you're a local artist with a vision we'll stretch to optimize our resources at minimal cost. If you've got a festival budget, we'll build you a festival show. We are staffed by professionals.</p>
       <p style="font-size:13px; line-height:1.7; color:var(--muted);">Those who can pay more subsidize those who can't.</p>
-    </div>
-    <div class="scale-visual">
-      <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.15em; color:var(--red); font-weight:700; margin-bottom:1rem;">Where do you land?</div>
-      <input type="range" min="0" max="100" value="50" class="scale-slider" id="scaleSlider">
-      <div class="scale-labels">
-        <span>Community</span>
-        <span>Break even</span>
-        <span>Fair rate</span>
-        <span>Full commercial</span>
-      </div>
-      <div class="scale-message" id="scaleMessage">
-        <span style="color:var(--muted); font-style:italic;">Slide for more information </span>
-      </div>
-    </div>
   </section>
 
   <!-- FAQ -->
@@ -772,7 +701,7 @@ footer {
     <div class="section-label">FAQ</div>
     <div class="faq-item">
       <div class="faq-q">What do you actually charge?</div>
-      <div class="faq-a">Sliding scale, no rate card. Small shows might be for gas money, we're looking to grow our portfolio and love what we do. Big festivals are a different conversation. We'll be honest about what's realistic for your budget.</div>
+      <div class="faq-a">Sliding scale. Small shows might be for gas money, we're looking to grow our portfolio and love what we do. Big festivals are a different conversation. We'll be honest about what's realistic for your budget.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">What kind of shows?</div>
@@ -784,47 +713,13 @@ footer {
     </div>
     <div class="faq-item">
       <div class="faq-q">How far do you travel?</div>
-      <div class="faq-a">We have transport. We'll factor travel into the sliding scale.</div>
+      <div class="faq-a">We have transport. We'll factor travel into the sliding scale. If you're in the DMV, we're probably game.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Can you do just one thing — like only sound?</div>
-      <div class="faq-a">Yes. You don't need the full stack. If you just need a PA and a competent pair of hands, LFG.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">What's with the sliding scale seriously?</div>
-      <div class="faq-a">Production access can be a huge barrier to entry for working-class artists. Those who can pay more make it possible for those who can't.</div>
+      <div class="faq-a">Yes. You don't need the full stack. If you just need a PA and a competent pair of hands, lfg.</div>
     </div>
   </section>
-
-
-  <!-- VALUES -->
-  <section class="values-section photocopy">
-    <div class="section-label">Why we do this</div>
-    <div class="values-grid">
-      <div class="value-item">
-        <div class="value-icon">★</div>
-        <div>
-          <div class="value-title">Art is not a luxury good</div>
-          <div class="value-desc">Every performer deserves to feel like a headliner. Production quality shouldn't be gated by funding.</div>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-icon">★</div>
-        <div>
-          <div class="value-title">Resource sharing, not hoarding</div>
-          <div class="value-desc">We borrow, we lend, we pool, we establish fair rental schema for our resources.</div>
-        </div>
-      </div>
-      <div class="value-item">
-        <div class="value-icon">★</div>
-        <div>
-          <div class="value-title">Community over competition</div>
-          <div class="value-desc">We're not trying to monopolize your scene. If we can't do it, we'll connect you with someone who can.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 
   <!-- NOT SURE -->
   <section class="not-sure">
@@ -835,7 +730,6 @@ footer {
       <p style="font-size:12px; color:var(--muted);">We respond within 24 hours. If it's urgent, say so.</p>
     </div>
     <div class="not-sure-contact">
-      <!-- DEV-001: Replace YOUR@EMAIL.COM -->
       <a href="mailto:YOUR@EMAIL.COM" class="btn btn-primary">Send us an email</a>
       <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">↑ Back to top</a>
     </div>
@@ -844,45 +738,20 @@ footer {
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-label">★ Book a show · Access resources · Stay connected ★</div>
-    <h2 class="cta-headline">LET'S MAKE<br>SOMETHING <em>REAL</em></h2>
-    <p class="cta-body">For show inquiries, community resources, or just to connect — reach out. This work is personal.</p>
+    <h2 class="cta-headline">AUDIO<br> <em>VISION</em></h2>
+    <p class="cta-body">For show inquiries and community resources</p>
     <div class="cta-buttons" style="flex-direction:column; align-items:center;">
-      <!-- DEV-001: Replace YOUR@EMAIL.COM -->
       <a href="mailto:YOUR@EMAIL.COM" class="btn btn-primary">Book Your Show</a>
-      <!-- DEV-003: Decide profile link vs DM link -->
-      <a href="#" class="btn btn-ghost">Instagram →</a>
-      <span class="stamp-faded" style="margin-top:0.5rem;">THIS IS REAL</span>
+      <a href="#" class="btn btn-ghost">EXTERNAL LINK TO FREAKSCENE OR SIMILAR→</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span>© AudioVision 2025</span>
-    <span class="footer-opsec">Production is a right, not a privilege.</span>
-    <span>No tracking · No ads · No bosses</span>
   </footer>
 
 </div>
-
-<script>
-// Sliding scale messages
-const scaleSlider = document.getElementById('scaleSlider');
-const scaleMessage = document.getElementById('scaleMessage');
-
-const messages = [
-  { max: 15, text: "🌱 Community rate — you're keeping it alive for everyone. We'll make it work." },
-  { max: 35, text: "🤝 Solidarity rate — covering costs and keeping the sliding scale possible." },
-  { max: 60, text: "⚖️ Fair rate — keeps our doors open and lets us keep offering community pricing." },
-  { max: 85, text: "💪 Full rate — you're directly subsidizing someone else's show. That's mutual aid." },
-  { max: 101, text: "🔥 Abundant rate — this is where it does the most good for the most people." }
-];
-
-scaleSlider.addEventListener('input', () => {
-  const val = parseInt(scaleSlider.value);
-  const msg = messages.find(m => val < m.max);
-  scaleMessage.innerHTML = '<span>' + msg.text + '</span>';
-});
-</script>
 
 </body>
 </html>
